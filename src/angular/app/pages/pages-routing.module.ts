@@ -2,19 +2,24 @@ import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 
 import { PagesComponent } from './pages.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { MainComponent } from './main/main.component';
+import { TariffComponent } from './tariff/tariff.component';
 
 const routes: Routes = [{
   path: '',
   component: PagesComponent,
   children: [
     {
-      path: 'dashboard',
-      component: DashboardComponent,
+      path: 'main',
+      component: MainComponent,
+    },
+    {
+      path: 'tariff',
+      component: TariffComponent,
     },
     {
       path: '',
-      redirectTo: 'dashboard',
+      redirectTo: 'main',
       pathMatch: 'full',
     },
   ],
