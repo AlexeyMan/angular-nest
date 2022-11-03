@@ -1,7 +1,8 @@
 table {
     width: 100%;
+    th, td { padding: 0 0.5em; }
   }
-  
+
   .mat-paginator-range-label {
       display: none;
   }
@@ -26,4 +27,13 @@ table {
   }
   .addBtn {
     padding-right: 14px;
+  }
+  .saveBtn {
+    position: absolute;
+    right: 0;
+    margin-right: 18px;
+    min-width: 115px;
+  }
+  ::ng-deep .mat-form-field-wrapper {
+    padding-bottom: 10px;
   }

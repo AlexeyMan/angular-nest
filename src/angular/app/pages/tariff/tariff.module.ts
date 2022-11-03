@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { NbActionsModule, NbButtonModule, NbCardModule, NbIconModule, NbInputModule, NbTooltipModule, NbTreeGridModule } from '@nebular/theme';
+import { NbActionsModule, NbButtonModule, NbCardModule, NbDialogModule, NbIconModule, NbInputModule, NbTooltipModule, NbTreeGridModule } from '@nebular/theme';
 
 import { ThemeModule } from '../../@theme/theme.module';
 import { TariffComponent } from './tariff.component';
@@ -27,6 +27,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     NbButtonModule,
     NbTooltipModule,
     NbActionsModule,
+    NbDialogModule.forChild(),
   ],
   declarations: [
     TariffComponent,
