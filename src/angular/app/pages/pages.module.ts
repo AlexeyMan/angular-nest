@@ -3,15 +3,18 @@ import { NbMenuModule } from '@nebular/theme';
 
 import { ThemeModule } from '../@theme/theme.module';
 import { PagesComponent } from './pages.component';
-import { DashboardModule } from './dashboard/dashboard.module';
+import { MainModule } from './main/main.module';
+
 import { PagesRoutingModule } from './pages-routing.module';
+import { TariffModule } from './tariff/tariff.module';
 
 @NgModule({
   imports: [
     PagesRoutingModule,
     ThemeModule,
     NbMenuModule,
-    DashboardModule,
+    MainModule,
+    TariffModule,
   ],
   declarations: [
     PagesComponent,

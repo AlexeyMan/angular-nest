@@ -2,9 +2,15 @@ import { NbMenuItem } from '@nebular/theme';
 
 export const MENU_ITEMS: NbMenuItem[] = [
   {
-    title: 'Dashboard',
+    title: 'Главная',
     icon: 'home-outline',
-    link: '/pages/dashboard',
+    link: '/pages/main',
+    home: true,
+  },
+  {
+    title: 'Тарифы',
+    icon: 'layout-outline',
+    link: '/pages/tariff',
     home: true,
   },
   {

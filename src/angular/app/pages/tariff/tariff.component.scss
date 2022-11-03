@@ -1,0 +1,39 @@
+table {
+    width: 100%;
+    th, td { padding: 0 0.5em; }
+  }
+
+  .mat-paginator-range-label {
+      display: none;
+  }
+  
+  .mat-form-field {
+    font-size: 14px;
+    width: 100%;
+  }
+  
+  
+  /* Border */
+  .mat-form-field-appearance-outline .mat-form-field-outline {
+    color: rgb(255, 255, 255);
+    /* background-color: white; */
+  }
+  /* Font color */
+  input.mat-input-element {
+    color: rgb(0, 0, 0);
+  }
+  .positionBtn {
+    justify-content: flex-end;
+  }
+  .addBtn {
+    padding-right: 14px;
+  }
+  .saveBtn {
+    position: absolute;
+    right: 0;
+    margin-right: 18px;
+    min-width: 115px;
+  }
+  ::ng-deep .mat-form-field-wrapper {
+    padding-bottom: 10px;
+  }

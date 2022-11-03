@@ -1,0 +1,250 @@
+<div class="mat-elevation-z8">
+  <nb-card class="header-container ">
+    <nb-card-header>
+      <mat-form-field style="width: 40%">
+        <mat-label>Фильтр</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="" #input />
+      </mat-form-field>
+      <!-- <mat-form-field style="width: 20%; float: right;">
+          <mat-label>Go to Page</mat-label>
+          <input matInput type="number" placeholder="Enter page number" [(ngModel)]="pageNumber" (ngModelChange)="goToPage()">
+        </mat-form-field> -->
+    </nb-card-header>
+    <form [formGroup]="VOForm" autocomplete="off">
+      <ng-container formArrayName="VORows">
+        <table
+          #table
+          mat-table
+          [dataSource]="dataSource"
+          class="mat-elevation-z8"
+        >
+          <!-- index Column -->
+          <ng-container matColumnDef="position">
+            <th
+              mat-header-cell
+              *matHeaderCellDef
+              style="min-width: 50px; text-align: center;"
+            >
+              № п/п
+            </th>
+            <td
+              mat-cell
+              *matCellDef="let element; let i = index"
+              [formGroup]="element"
+            >
+              <mat-form-field appearance="none" style="width: 50px">
+                <input
+                  matInput
+                  type="text"
+                  formControlName="position"
+                  [readonly]="true"
+                  style="text-align: center;"
+                />
+              </mat-form-field></td
+          ></ng-container>
+
+          <!-- nameService Column -->
+          <ng-container matColumnDef="nameService">
+            <th mat-header-cell *matHeaderCellDef style="width: 100%">
+              Наименование услуги (работы)
+            </th>
+            <td
+              mat-cell
+              *matCellDef="let element; let i = index"
+              [formGroup]="element"
+            >
+              <mat-form-field
+                style="width: 100%"
+                [appearance]="
+                  VOForm.get('VORows').value[i].isEditable ? 'none' : 'legacy'
+                "
+              >
+                <textarea
+                  matInput
+                  cdkTextareaAutosize
+                  type="text"
+                  formControlName="nameService"
+                  [readonly]="VOForm.get('VORows').value[i].isEditable"
+                ></textarea>
+              </mat-form-field>
+            </td>
+          </ng-container>
+
+          <!-- costTotalArea Column -->
+          <ng-container matColumnDef="costTotalArea">
+            <th mat-header-cell *matHeaderCellDef style="min-width: 140px">
+              За 1 кв.м общей площади жилого помещения, руб. в месяц
+            </th>
+            <td
+              mat-cell
+              *matCellDef="let element; let i = index"
+              [formGroup]="element"
+            >
+              <mat-form-field
+                [appearance]="
+                  VOForm.get('VORows').value[i].isEditable ? 'none' : 'legacy'
+                "
+              >
+                <input
+                  matInput
+                  type="number"
+                  step="0.1"
+                  formControlName="costTotalArea"
+                  [readonly]="VOForm.get('VORows').value[i].isEditable"
+                />
+              </mat-form-field>
+            </td>
+          </ng-container>
+
+          <!-- costInHostels Column -->
+          <ng-container matColumnDef="costInHostels">
+            <th mat-header-cell *matHeaderCellDef style="min-width: 140px">
+              За 1 кв.м общей площади комнат в общежитиях, руб. в месяц
+            </th>
+            <td
+              mat-cell
+              *matCellDef="let element; let i = index"
+              [formGroup]="element"
+            >
+              <mat-form-field
+                [appearance]="
+                  VOForm.get('VORows').value[i].isEditable ? 'none' : 'legacy'
+                "
+              >
+                <input
+                  matInput
+                  type="number"
+                  step="0.1"
+                  formControlName="costInHostels"
+                  [readonly]="VOForm.get('VORows').value[i].isEditable"
+                />
+              </mat-form-field>
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef>
+              <nb-actions class="positionBtn" size="medium">
+                <nb-action
+                  class="addBtn"
+                  (click)="AddNewRow()"
+                  nbTooltip="Добавить"
+                >
+                  <nb-icon status="success" icon="plus-square"></nb-icon>
+                </nb-action>
+              </nb-actions>
+            </th>
+            <td
+              mat-cell
+              *matCellDef="let element; let i = index"
+              [formGroup]="element"
+            >
+              <nb-actions class="positionBtn" size="small">
+                <nb-action
+                  *ngIf="!VOForm.get('VORows').value[i].isEditable"
+                  (click)="SaveVO(VOForm, i)"
+                  nbTooltip="Сохранить"
+                >
+                  <nb-icon
+                    status="success"
+                    icon="checkmark-circle-2-outline"
+                  ></nb-icon>
+                </nb-action>
+                <nb-action
+                  *ngIf="
+                    !VOForm.get('VORows').value[i].isEditable &&
+                    VOForm.get('VORows').value[i].action != 'newRecord'
+                  "
+                  (click)="CancelSVO(VOForm.get('VORows'), i)"
+                  nbTooltip="Отмена"
+                >
+                  <nb-icon
+                    status="danger"
+                    icon="close-circle-outline"
+                  ></nb-icon>
+                </nb-action>
+                <nb-action
+                  *ngIf="
+                    !VOForm.get('VORows').value[i].isEditable &&
+                    VOForm.get('VORows').value[i].action == 'newRecord'
+                  "
+                  (click)="DeleteVO(VOForm.get('VORows').value[i], i)"
+                  nbTooltip="Отмена"
+                  ><nb-icon
+                    status="danger"
+                    icon="close-circle-outline"
+                  ></nb-icon
+                ></nb-action>
+              </nb-actions>
+              <nb-actions class="positionBtn" size="small">
+                <nb-action
+                  *ngIf="VOForm.get('VORows').value[i].isEditable"
+                  (click)="EditSVO(VOForm, i)"
+                  nbTooltip="Редактировать"
+                >
+                  <nb-icon status="primary" icon="edit-outline"></nb-icon>
+                </nb-action>
+                <nb-action
+                  *ngIf="VOForm.get('VORows').value[i].isEditable"
+                  (click)="DeleteVO(VOForm.get('VORows').value[i], i)"
+                  nbTooltip="Удалить"
+                  ><nb-icon status="danger" icon="trash-2-outline"></nb-icon
+                ></nb-action>
+              </nb-actions>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+          <!-- Row shown when there is no matching data. -->
+          <tr class="mat-row" *matNoDataRow>
+            <td
+              class="mat-cell"
+              colspan="4"
+              style="text-align: center; color: red"
+            >
+              Нет данных по запросу "{{ input.value }}"
+            </td>
+          </tr>
+        </table>
+      </ng-container>
+    </form>
+    <mat-card
+      *ngIf="isLoading"
+      style="display: flex; justify-content: center; align-items: center"
+    >
+      <mat-progress-spinner color="primary" mode="indeterminate">
+      </mat-progress-spinner>
+    </mat-card>
+
+    <!-- <mat-paginator-goto [length]="100" [pageIndex]="0" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"
+          (page)="paginationChange($event)"></mat-paginator-goto> -->
+    <!-- <mat-paginator
+      [pageSizeOptions]="[
+        10,
+        dataSource.data.length > 12 ? dataSource.data.length : ''
+      ]"
+      showFirstLastButtons
+    >
+    </mat-paginator> -->
+  </nb-card>
+  <ng-template #dialog let-data let-ref="dialogRef">
+    <nb-card style="min-width: 350px;">
+      <nb-card-header>{{ data.title }}</nb-card-header>
+      <nb-card-body>{{ data.data }}</nb-card-body>
+      <nb-card-footer style="position: relative;">
+        <button nbButton (click)="ref.close(false)">Закрыть</button>
+        <button
+          class="saveBtn"
+          nbButton
+          *ngIf="confirm"
+          (click)="ref.close(true)"
+        >
+          Да
+        </button>
+      </nb-card-footer>
+    </nb-card>
+  </ng-template>
+  <!-- <button nbButton (click)="open(dialog)">Open Dialog</button> -->
+</div>
