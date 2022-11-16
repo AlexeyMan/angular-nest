@@ -98,4 +98,57 @@
     </nb-card>
   </div>
   </div>
+  <form [formGroup]="infoForm" novalidate (ngSubmit)="onSubmit()">
+    <nb-card size="Small card" [accent]="selectedOption">
+      <nb-card-header><nb-icon icon="info-outline" [status]="selectedOption" pack="eva"></nb-icon>{{titleName.value}}</nb-card-header>
+      <nb-card-body>
+    <!-- <div class="form-group"> -->
+        <label>Заголовок</label>
+        <input nbInput fullWidth class="form-control" name="title" formControlName="titleName" #titleName/>
+    <!-- </div> -->
+    <div class="form-group">
+        <label>Информация</label>
+        <!-- <input nbInput class="form-control" name="info" formControlName="info" /> -->
+        <textarea
+  nbInput
+  fullWidth
+  name="info"
+  cdkTextareaAutosize
+  type="text"
+  formControlName="info"
+  [readonly]="false"
+></textarea>
+<!--           
+        <div class="alert alert-danger"
+            *ngIf="infoForm.controls['userEmail'].invalid && infoForm.controls['userEmail'].touched">
+            Некорректный email
+        </div> -->
+    </div>
+    <div class="form-group">
+      <label>Выбирите статус</label>
+      <nb-radio-group style="display: flex" [(ngModel)]="selectedOption" name="status" formControlName="infoStatus">
+        <nb-radio value="danger" class="status-danger" checked>Option 1</nb-radio>
+        <nb-radio value="warning" class="status-warning">Option 2</nb-radio>
+        <nb-radio value="primary" class="status-primary">Option 3</nb-radio>
+      </nb-radio-group>
+      <!-- <input class="form-control" name="status" formControlName="infoStatus" /> -->
+  </div>
+    <div class="form-group">
+      <label style="width: 100%">Показывать пользователю</label>
+      <nb-checkbox status="primary" name="catVisible"
+      formControlName="catVisible">{{infoForm.get('catVisible').value ? "Пользователь видит карточку" : "Пользователь не видит карточку"}}</nb-checkbox>
+  </div>
+  <div class="form-group">
+    <label>Время показа карточки</label>
+    <!-- <input class="form-control" name="delay" formControlName="infoDelay" /> -->
+</div>
+
+  </nb-card-body>
+</nb-card>
+    <div class="form-group">
+        <button class="btn btn-default" [disabled]="infoForm.invalid">
+            Отправить
+        </button>
+    </div>
+</form>
 </div>
