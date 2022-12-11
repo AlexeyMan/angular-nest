@@ -1,154 +1,271 @@
 <div>
   <nb-card class="header-container ">
     <nb-card-body>
-      <img src="../../../assets/img/logotip-jkh-servis.png" width="400px" align="left" alt="ЖКХ">
+      <img
+        src="../../../assets/img/logotip-jkh-servis.png"
+        width="400px"
+        align="left"
+        alt="ЖКХ"
+      />
       <div class="phones-container">
-        <nb-icon nbPrefix icon="phone" status="primary" pack="eva"></nb-icon><i class="icon ion-social-whatsapp-outline"></i><strong> 8-812-649-05-70</strong><br>         
-        <nb-icon nbPrefix icon="phone" status="primary" pack="eva"></nb-icon><i class="icon ion-social-whatsapp"></i><strong> 8-812-648-46-50</strong><br>
-        <nb-icon nbPrefix icon="phone" status="primary" pack="eva"></nb-icon><i class="icon ion-ios-telephone-outline"></i><strong> 8-812-649-46-50</strong><br>
-        <nb-icon nbPrefix icon="phone" status="primary" pack="eva"></nb-icon><strong> ЕЖЕДНЕВНО с 8.00 до 21.00</strong><br>
+        <nb-icon nbPrefix icon="phone" status="primary" pack="eva"></nb-icon
+        ><i class="icon ion-social-whatsapp-outline"></i
+        ><strong> 8-812-649-05-70</strong><br />
+        <nb-icon nbPrefix icon="phone" status="primary" pack="eva"></nb-icon
+        ><i class="icon ion-social-whatsapp"></i
+        ><strong> 8-812-648-46-50</strong><br />
+        <nb-icon nbPrefix icon="phone" status="primary" pack="eva"></nb-icon
+        ><i class="icon ion-ios-telephone-outline"></i
+        ><strong> 8-812-649-46-50</strong><br />
+        <nb-icon nbPrefix icon="phone" status="primary" pack="eva"></nb-icon
+        ><strong> ЕЖЕДНЕВНО с 8.00 до 21.00</strong><br />
       </div>
     </nb-card-body>
   </nb-card>
   <nb-card class="header-container ">
-    <nb-card-header>Стол объявлений</nb-card-header>
+    <nb-card-header style="text-align: end; display: flex; align-items: flex-end; justify-content: space-between;">
+      <label>Стол объявлений</label>
+      <!-- <nb-icon icon="lock-outline"></nb-icon> -->
+      <button nbButton ghost (click)="openDialog()" status="danger" nbTooltip="Добавить"><nb-icon icon="plus"></nb-icon></button>
+    </nb-card-header>
     <nb-card-body>
-      <div class="card-row">
+      <div class="row">
+        <div class="card-col col-md-6" *ngFor="let card of cards">
+          <nb-card size="Small card" [accent]="card.status">
+            <nb-card-header style="display: flex; align-items: center; justify-content: space-between;">
+              <div class="col-md-3">
+              <nb-icon
+                icon="info-outline"
+                [status]="card.status"
+                pack="eva"
+              ></nb-icon>
+              {{card.title}}
+              </div>
+              <div class="col-md-2" style="margin-top: 3px">
+                <span style="padding-right: 10px;" nbTooltip="Не видна пользователю"><nb-icon status="danger" icon="person-delete-outline"></nb-icon></span>
+                <span  nbTooltip="Время показа истекло"><nb-icon status="danger" icon="alert-triangle-outline"></nb-icon></span>
+              </div>          
+                <div class="col-md-3" style="text-align: end;">
+                  
+                <button nbButton ghost (click)="openEditDialog(card)" status="warning" nbTooltip="Редактировать"><nb-icon icon="edit-outline"></nb-icon></button>
+                <button nbButton ghost (click)="openEditDialog(card)" status="danger" nbTooltip="Удалить"><nb-icon icon="trash-2-outline"></nb-icon></button>
+              </div>
+              </nb-card-header
+            >
+            <nb-card-body>
+              {{card.info}}
+            </nb-card-body>
+          </nb-card>
+        </div>
+        <!-- <div class="card-col">
+          <nb-card size="Small card" accent="primary">
+            <nb-card-header
+              ><nb-icon
+                icon="info-outline"
+                status="primary"
+                pack="eva"
+              ></nb-icon>
+              Уважаемые жильцы!</nb-card-header
+            >
+          </nb-card>
+        </div> -->
+      <!-- </div> -->
+      <!-- <div class="card-row"> -->
+        <!-- <div class="card-col">
+          <nb-card size="Small card" accent="danger">
+            <nb-card-header
+              ><nb-icon
+                icon="info-outline"
+                status="danger"
+                pack="eva"
+              ></nb-icon>
+              Уважаемые жильцы!</nb-card-header
+            >
+            <nb-card-body>
+              С 01.01.2022 аавыавывыа<br />
+              ывавыавыа<br />
+              ываываыва<br />
+              выаыва<br />
+              выаываыва<br />
+              ываываыва<br />
+              С 01.01.2022 аавыавывыа<br />
+              ывавыавыа<br />
+              ываываыва<br />
+              выаыва<br />
+              выаываыва<br />
+              ываываыва<br />
+              С 01.01.2022 аавыавывыа<br />
+              ывавыавыа<br />
+              ываываыва<br />
+              выаыва<br />
+              выаываыва<br />
+              ываываыва<br />
+            </nb-card-body>
+          </nb-card>
+        </div>
         <div class="card-col">
-      <nb-card size="Small card" accent="danger">
-        <nb-card-header><nb-icon icon="info-outline" status="danger" pack="eva"></nb-icon> Уважаемые жильцы!</nb-card-header>
-        <nb-card-body>
-          С 01.01.2022 аавыавывыа<br>
-          ывавыавыа<br>
-          ываываыва<br>
-          выаыва<br>
-          выаываыва<br>
-          ываываыва<br>
-          С 01.01.2022 аавыавывыа<br>
-          ывавыавыа<br>
-          ываываыва<br>
-          выаыва<br>
-          выаываыва<br>
-          ываываыва<br>
-        </nb-card-body>
-
-      </nb-card>
-      </div>
-    <div class="card-col">
-      <nb-card size="Small card" accent="primary">
-        <nb-card-header><nb-icon icon="info-outline" status="primary" pack="eva"></nb-icon> Уважаемые жильцы!</nb-card-header>
-      </nb-card>
-    </div>
-      </div>
-      <div class="card-row">
-        <div class="card-col">
-      <nb-card size="Small card" accent="danger">
-        <nb-card-header><nb-icon icon="info-outline" status="danger" pack="eva"></nb-icon> Уважаемые жильцы!</nb-card-header>
-        <nb-card-body>
-          С 01.01.2022 аавыавывыа<br>
-          ывавыавыа<br>
-          ываываыва<br>
-          выаыва<br>
-          выаываыва<br>
-          ываываыва<br>
-          С 01.01.2022 аавыавывыа<br>
-          ывавыавыа<br>
-          ываываыва<br>
-          выаыва<br>
-          выаываыва<br>
-          ываываыва<br>
-          С 01.01.2022 аавыавывыа<br>
-          ывавыавыа<br>
-          ываываыва<br>
-          выаыва<br>
-          выаываыва<br>
-          ываываыва<br>
-        </nb-card-body>
-      </nb-card>
-      </div>
-    <div class="card-col">
-      <nb-card size="Small card" accent="primary">
-        <nb-card-header><nb-icon icon="info-outline" status="primary" pack="eva"></nb-icon> Уважаемые жильцы!</nb-card-header>
-      </nb-card>
-    </div>
+          <nb-card size="Small card" accent="primary">
+            <nb-card-header
+              ><nb-icon
+                icon="info-outline"
+                status="primary"
+                pack="eva"
+              ></nb-icon>
+              Уважаемые жильцы!</nb-card-header
+            >
+          </nb-card>
+        </div> -->
       </div>
     </nb-card-body>
   </nb-card>
   <div class="card-row">
     <div class="card-col">
-    <nb-card size="Small card">
-      <nb-card-header>Сервисные службы</nb-card-header>
-      <nb-card-body>
-        <nb-icon nbPrefix icon="phone" status="primary" pack="eva"></nb-icon><strong> 8-812-649-05-70</strong><br>         
-        <nb-icon nbPrefix icon="phone" status="primary" pack="eva"></nb-icon><strong> 8-812-648-46-50</strong><br>
-        <nb-icon nbPrefix icon="phone" status="primary" pack="eva"></nb-icon><strong> 8-812-649-46-50</strong><br>
-        <nb-icon nbPrefix icon="phone" status="primary" pack="eva"></nb-icon><strong> ЕЖЕДНЕВНО с 8.00 до 21.00</strong><br>
-      </nb-card-body>
-    </nb-card>
+      <nb-card size="Small card">
+        <nb-card-header>Сервисные службы</nb-card-header>
+        <nb-card-body>
+          <nb-icon nbPrefix icon="phone" status="primary" pack="eva"></nb-icon
+          ><strong> 8-812-649-05-70</strong><br />
+          <nb-icon nbPrefix icon="phone" status="primary" pack="eva"></nb-icon
+          ><strong> 8-812-648-46-50</strong><br />
+          <nb-icon nbPrefix icon="phone" status="primary" pack="eva"></nb-icon
+          ><strong> 8-812-649-46-50</strong><br />
+          <nb-icon nbPrefix icon="phone" status="primary" pack="eva"></nb-icon
+          ><strong> ЕЖЕДНЕВНО с 8.00 до 21.00</strong><br />
+        </nb-card-body>
+      </nb-card>
     </div>
     <div class="card-col">
-    <nb-card size="Small card">
-      <nb-card-header>Службы спасения</nb-card-header>
-      <nb-card-body>
-        <nb-icon nbPrefix icon="phone" status="primary" pack="eva"></nb-icon><strong> 112 — Единый номер службы экстренных вызовов Санкт‑Петербурга для звонков с сотовых телефонов в экстренных ситуациях (можно звонить даже без сим-карты, без денег на счете и с заблокированной клавиатурой телефона).</strong><br>         
-        <nb-icon nbPrefix icon="phone" status="primary" pack="eva"></nb-icon><strong> 004 - Центр по приему обращений граждан по вопросам ЖКХ, нештатных ситуаций в городе, а также приём сообщений от детей, подвергающихся насилию в семье и за ее пределами или попавших в сложную жизненную ситуацию.</strong><br>
-        <nb-icon nbPrefix icon="phone" status="primary" pack="eva"></nb-icon><strong> 8-812-649-46-50</strong><br>
-        <nb-icon nbPrefix icon="phone" status="primary" pack="eva"></nb-icon><strong> ЕЖЕДНЕВНО с 8.00 до 21.00</strong><br>
-      </nb-card-body>
-    </nb-card>
+      <nb-card size="Small card">
+        <nb-card-header>Службы спасения</nb-card-header>
+        <nb-card-body>
+          <nb-icon nbPrefix icon="phone" status="primary" pack="eva"></nb-icon
+          ><strong>
+            112 — Единый номер службы экстренных вызовов Санкт‑Петербурга для
+            звонков с сотовых телефонов в экстренных ситуациях (можно звонить
+            даже без сим-карты, без денег на счете и с заблокированной
+            клавиатурой телефона).</strong
+          ><br />
+          <nb-icon nbPrefix icon="phone" status="primary" pack="eva"></nb-icon
+          ><strong>
+            004 - Центр по приему обращений граждан по вопросам ЖКХ, нештатных
+            ситуаций в городе, а также приём сообщений от детей, подвергающихся
+            насилию в семье и за ее пределами или попавших в сложную жизненную
+            ситуацию.</strong
+          ><br />
+          <nb-icon nbPrefix icon="phone" status="primary" pack="eva"></nb-icon
+          ><strong> 8-812-649-46-50</strong><br />
+          <nb-icon nbPrefix icon="phone" status="primary" pack="eva"></nb-icon
+          ><strong> ЕЖЕДНЕВНО с 8.00 до 21.00</strong><br />
+        </nb-card-body>
+      </nb-card>
+    </div>
   </div>
-  </div>
-  <form [formGroup]="infoForm" novalidate (ngSubmit)="onSubmit()">
+  <ng-template #modalTemplate let-data let-ref="dialogRef">
+  <form [formGroup]="infoForm" novalidate>
     <nb-card size="Small card" [accent]="selectedOption">
-      <nb-card-header><nb-icon icon="info-outline" [status]="selectedOption" pack="eva"></nb-icon>{{titleName.value}}</nb-card-header>
+      <nb-card-header
+        ><nb-icon
+          icon="info-outline"
+          [status]="selectedOption"
+          pack="eva"
+          style="margin-right: 0px;"
+        ></nb-icon>
+        {{ titleName.value }}
+      </nb-card-header>
       <nb-card-body>
-    <!-- <div class="form-group"> -->
+        <!-- <div class="form-group"> -->
         <label>Заголовок</label>
-        <input nbInput fullWidth class="form-control" name="title" formControlName="titleName" #titleName/>
-    <!-- </div> -->
-    <div class="form-group">
-        <label>Информация</label>
-        <!-- <input nbInput class="form-control" name="info" formControlName="info" /> -->
-        <textarea
-  nbInput
-  fullWidth
-  name="info"
-  cdkTextareaAutosize
-  type="text"
-  formControlName="info"
-  [readonly]="false"
-></textarea>
-<!--           
+        <input
+          nbInput
+          fullWidth
+          class="form-control"
+          name="title"
+          formControlName="title"
+          #titleName
+        />
+        <!-- </div> -->
+        <div style="margin-top: 10px;" class="form-group">
+          <label>Информация</label>
+          <!-- <input nbInput class="form-control" name="info" formControlName="info" /> -->
+          <textarea
+            nbInput
+            fullWidth
+            name="info"
+            cdkTextareaAutosize
+            type="text"
+            formControlName="info"
+            [readonly]="false"
+          ></textarea>
+          <!--           
         <div class="alert alert-danger"
             *ngIf="infoForm.controls['userEmail'].invalid && infoForm.controls['userEmail'].touched">
             Некорректный email
         </div> -->
-    </div>
-    <div class="form-group">
-      <label>Выбирите статус</label>
-      <nb-radio-group style="display: flex" [(ngModel)]="selectedOption" name="status" formControlName="infoStatus">
-        <nb-radio value="danger" class="status-danger" checked>Option 1</nb-radio>
-        <nb-radio value="warning" class="status-warning">Option 2</nb-radio>
-        <nb-radio value="primary" class="status-primary">Option 3</nb-radio>
-      </nb-radio-group>
-      <!-- <input class="form-control" name="status" formControlName="infoStatus" /> -->
-  </div>
-    <div class="form-group">
-      <label style="width: 100%">Показывать пользователю</label>
-      <nb-checkbox status="primary" name="catVisible"
-      formControlName="catVisible">{{infoForm.get('catVisible').value ? "Пользователь видит карточку" : "Пользователь не видит карточку"}}</nb-checkbox>
-  </div>
-  <div class="form-group">
-    <label>Время показа карточки</label>
-    <!-- <input class="form-control" name="delay" formControlName="infoDelay" /> -->
-</div>
+        </div>
+        <div class="form-group">
+          <label>Выбирите статус</label>
+          <nb-radio-group
+            style="display: flex"
+            [(ngModel)]="selectedOption"
+            name="status"
+            formControlName="status"
+          >
+            <nb-radio value="danger" class="status-danger" checked
+              >Внимание</nb-radio
+            >
+            <nb-radio value="warning" class="status-warning">Новость</nb-radio>
+            <nb-radio value="primary" class="status-primary">Инфо</nb-radio>
+          </nb-radio-group>
+          <!-- <input class="form-control" name="status" formControlName="infoStatus" /> -->
+        </div>
+        <div class="form-group">
+          <label style="width: 100%">Показывать пользователю</label>
+          <nb-checkbox
+            status="primary"
+            name="catVisible"
+            formControlName="catVisible"
+            >{{
+              infoForm.get('catVisible').value
+                ? 'Пользователь видит карточку'
+                : 'Пользователь не видит карточку'
+            }}</nb-checkbox
+          >
+        </div>
+        <div class="form-group">
+          <label style="width: 100%">Время показа карточки {{msUTC}}</label>
+          <input
+            nbInput
+            type="datetime-local"
+            id="meeting-time"
+            name="meeting-time"
+            formControlName="delay"
+            [min]="now"
+            max=""
+            #infoDelay
+          />
+          <!-- <input class="form-control" name="delay" formControlName="infoDelay" /> -->
+        </div>
+      </nb-card-body>
+      <nb-card-footer style="display: flex; justify-content: space-between;">
+        <!-- <div class="form-group"> -->
+          <button *ngIf="!editMode" nbButton status="basic" (click)="ref.close(infoForm.value)" [disabled]="infoForm.invalid">
+            Добавить
+          </button>
+          
+          <button *ngIf="editMode" nbButton status="basic" (click)="onSave(infoForm.value, ref)" [disabled]="infoForm.invalid">
+            Сохранить
+          </button>
+        <!-- </div> -->
+          <button nbButton (click)="ref.close()" status="warning">Закрыть</button>
 
-  </nb-card-body>
-</nb-card>
-    <div class="form-group">
-        <button class="btn btn-default" [disabled]="infoForm.invalid">
-            Отправить
-        </button>
-    </div>
-</form>
+        <!-- <button nbButton status="basic">Сохранить</button> -->
+      </nb-card-footer>
+    </nb-card>
+    <!-- <div class="form-group">
+      <button class="btn btn-default" [disabled]="infoForm.invalid">
+        Отправить
+      </button>
+    </div> -->
+  </form>
+  </ng-template>
 </div>
