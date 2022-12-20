@@ -5,6 +5,7 @@ import { FormsModule }   from '@angular/forms';
 import { ThemeModule } from '../../@theme/theme.module';
 import { MainComponent } from './main.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AutosizeModule } from 'ngx-autosize';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     NbTooltipModule,
     NbWindowModule,
     NbDialogModule,
+    AutosizeModule,
   ],
   declarations: [
     MainComponent,

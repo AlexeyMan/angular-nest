@@ -28,3 +28,10 @@
     margin: 0 0.5rem;
   }
 }
+.auto-textarea {
+  width: 100%;
+  border-style: hidden;
+}
+.auto-textarea:focus-visible {
+  outline: none;
+}

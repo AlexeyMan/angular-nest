@@ -10,6 +10,7 @@ import { Card } from './models/main';
 })
 export class MainComponent implements OnInit {
   @ViewChild('modalTemplate', { static: true }) modalTemplate: TemplateRef<any>;
+  @ViewChild('modalDel', { static: true }) modalDel: TemplateRef<any>;
   public cards: Card[] = new Array<Card>();
   selectedOption = 'primary';
   infoForm: FormGroup;
@@ -43,6 +44,7 @@ export class MainComponent implements OnInit {
   ngOnInit(): void {
     this.cards.push(this.card);
   }
+  
   openDialog() {
     // this.cards.push(this.card);
     this.dialogService
@@ -67,4 +69,14 @@ export class MainComponent implements OnInit {
     this.openDialog();
     this.editMode = true;
   }
+  openDelDialog(item){
+    this.dialogService
+      .open(this.modalDel, { context: {} })
+      .onClose.subscribe(result => {
+        if (result) {
+        const inx = this.cards.findIndex(card => card.id === item.id);
+        this.cards.splice(inx,1);
+      }
+    })
+  } 
 }
