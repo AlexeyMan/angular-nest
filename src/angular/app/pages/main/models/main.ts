@@ -4,5 +4,6 @@ export interface Card {
     status: number;
     info: string;
     catVisible: boolean;
-    delay: number;
+    delay: string;
+    timeOff: boolean;
 }

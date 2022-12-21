@@ -31,7 +31,12 @@
 .auto-textarea {
   width: 100%;
   border-style: hidden;
+  background: nb-theme(background-basic-color-1);
 }
-.auto-textarea:focus-visible {
+.auto-textarea:focus {
   outline: none;
+  background: nb-theme(background-basic-color-1);
+}
+.auto-textarea:hover {
+  background: nb-theme(background-basic-color-1);
 }

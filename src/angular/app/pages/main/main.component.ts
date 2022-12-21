@@ -21,7 +21,8 @@ export class MainComponent implements OnInit {
     status: 1,
     info: 'string',
     catVisible: true,
-    delay: 22,
+    delay: "",
+    timeOff: false,
   };
   editMode = false;
   // зона UTC
@@ -33,19 +34,45 @@ export class MainComponent implements OnInit {
     private dialogService: NbDialogService,
   ) {
     this.infoForm = formBuilder.group({
-      id: [5],
+      id: [],
       title: ['Информация', [Validators.required]],
       info: ['', [Validators.required]],
       status: [],
       catVisible: [],
       delay: [],
+      timeOff: [],
     });
   }
+
   ngOnInit(): void {
     this.cards.push(this.card);
+    setInterval(() => this.calculateTimeVisible(), 5000); 
   }
   
+
+  //сравнение времени для отображения карточки и скрытие ее
+  calculateTimeVisible(): void {
+    if(this.cards.length > 0){
+     const dateNow = Date.now();
+     for(let i = 0; i < this.cards.length; i++){
+      if(this.cards[i].delay){
+        const del = Date.parse(this.cards[i].delay);
+        if(del < dateNow){
+          this.cards[i].catVisible = true;
+          this.cards[i].timeOff = true;
+        } else {
+          this.cards[i].catVisible = false;
+          this.cards[i].timeOff = false;
+        }
+      } else {
+        this.cards[i].timeOff = false;
+      }
+     }
+    }
+  }
+
   openDialog() {
+    
     // this.cards.push(this.card);
     this.dialogService
       .open(this.modalTemplate, { context: {} })

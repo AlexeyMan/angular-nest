@@ -56,7 +56,7 @@
               <div class="col-md-2" style="margin-top: 3px">
                 <div style="white-space: nowrap">
                   <span
-                    *ngIf="!card.catVisible"
+                    *ngIf="card.catVisible"
                     style="padding-right: 10px;"
                     nbTooltip="Не видна пользователю"
                     ><nb-icon
@@ -64,7 +64,7 @@
                       icon="person-delete-outline"
                     ></nb-icon
                   ></span>
-                  <span nbTooltip="Время показа истекло"
+                  <span *ngIf="card.timeOff" nbTooltip="Время показа истекло"
                     ><nb-icon
                       status="danger"
                       icon="alert-triangle-outline"
@@ -97,6 +97,8 @@
             </nb-card-header>
             <nb-card-body>
               <textarea
+                nbInput
+                fullWidth
                 class="auto-textarea"
                 [readonly]="true"
                 autosize
@@ -184,7 +186,6 @@
               type="text"
               formControlName="info"
               [readonly]="false"
-              class="auto-textarea"
               [minRows]="10"
               [maxRows]="20"
               [ariaSetSize]="30"
@@ -217,8 +218,8 @@
               formControlName="catVisible"
               >{{
                 infoForm.get('catVisible').value
-                  ? 'Пользователь видит карточку'
-                  : 'Пользователь не видит карточку'
+                  ? 'Пользователь не видит карточку'
+                  : 'Пользователь видит карточку'
               }}</nb-checkbox
             >
           </div>
