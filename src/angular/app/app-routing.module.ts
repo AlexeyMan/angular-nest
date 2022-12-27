@@ -8,12 +8,20 @@ import {
   NbRequestPasswordComponent,
   NbResetPasswordComponent,
 } from '@nebular/auth';
-
+import { EntryComponent } from './entry/entry.component';
+// import {PagesComponent } from './pages/pages.component';
+// import {EntryModule } from './entry/entry.module';
 export const routes: Routes = [
   {
     path: 'pages',
     loadChildren: () => import('./pages/pages.module')
       .then(m => m.PagesModule),
+  },
+  {
+    path: 'entry',
+    component: EntryComponent,
+    loadChildren: () => import('./entry/entry.module')
+    .then(m => m.EntryModule)
   },
   {
     path: 'auth',
@@ -45,8 +53,8 @@ export const routes: Routes = [
       },
     ],
   },
-  { path: '', redirectTo: 'pages', pathMatch: 'full' },
-  { path: '**', redirectTo: 'pages' },
+  { path: '', redirectTo: 'entry', pathMatch: 'full' },
+  { path: '**', redirectTo: 'entry' },
 ];
 
 const config: ExtraOptions = {
