@@ -20,8 +20,6 @@ export const routes: Routes = [
   {
     path: 'entry',
     component: EntryComponent,
-    loadChildren: () => import('./entry/entry.module')
-    .then(m => m.EntryModule)
   },
   {
     path: 'auth',

@@ -1,0 +1,177 @@
+<nb-card style="padding: 10px">
+  <nb-card-header>Заполните необходимую информацию</nb-card-header>
+  <nb-card-body>
+    <nb-stepper #stepper>
+      <nb-step [stepControl]="firstForm" label="Город">
+        <form
+          [formGroup]="firstForm"
+          (ngSubmit)="onFirstSubmit()"
+          class="step-container"
+        >
+          <p class="lorem">Выберите город</p>
+          <div class="input-group">
+            <input
+              #autoInputSity
+              nbInput
+              type="text"
+              style="max-width: 100%"
+              placeholder="Выберите город"
+              class="form-control"
+              formControlName="firstCtrl"
+              (input)="onChangeSity()"
+              [nbAutocomplete]="selectSity"
+              [ngClass]="{
+                'form-control-danger':
+                  firstForm.invalid && (firstForm.dirty || firstForm.touched)
+              }"
+            />
+
+            <nb-autocomplete
+              #selectSity
+              (selectedChange)="onSelectionChangeSity($event)"
+            >
+              <nb-option
+                *ngFor="let option of filteredOptionsSity$ | async"
+                [value]="option"
+              >
+                {{ option }}
+              </nb-option>
+            </nb-autocomplete>
+          </div>
+          <button nbButton nbStepperNext>Дальше</button>
+        </form>
+      </nb-step>
+      <nb-step [stepControl]="secondForm" label="Улицу">
+        <form
+          [formGroup]="secondForm"
+          (ngSubmit)="onSecondSubmit()"
+          class="step-container"
+        >
+          <p class="lorem">Выберите улицу</p>
+          <div class="input-group">
+            <input
+              #autoInputStreet
+              nbInput
+              type="text"
+              style="max-width: 100%"
+              placeholder="Выберите улицу"
+              class="form-control"
+              formControlName="secondCtrl"
+              (input)="onChangeStreet()"
+              [nbAutocomplete]="selectStreet"
+              [ngClass]="{
+                'form-control-danger':
+                  secondForm.invalid && (secondForm.dirty || secondForm.touched)
+              }"
+            />
+
+            <nb-autocomplete
+              #selectStreet
+              (selectedChange)="onSelectionChangeStreet($event)"
+            >
+              <nb-option
+                *ngFor="let option of filteredOptionsStreet$ | async"
+                [value]="option"
+              >
+                {{ option }}
+              </nb-option>
+            </nb-autocomplete>
+          </div>
+          <div class="button-group">
+            <button nbButton nbStepperNext>Дальше</button>
+            <button nbButton nbStepperPrevious>Назад</button>
+          </div>
+        </form>
+      </nb-step>
+      <nb-step [stepControl]="houseForm" label="Дом">
+        <form
+          [formGroup]="houseForm"
+          (ngSubmit)="onhouseSubmit()"
+          class="step-container"
+        >
+          <p class="lorem">Выберите дом, если есть корпус и/или литера, укажите их.</p>
+          <div class="input-group">
+            <input
+              #autoInputHouse
+              nbInput
+              type="number"
+              min="1"
+              style="max-width: 100%"
+              placeholder="Выберите дом"
+              class="form-control"
+              formControlName="houseCtrl"
+              (input)="onChangeHouse()"
+              [nbAutocomplete]="selectHouse"
+              [ngClass]="{
+                'form-control-danger':
+                  houseForm.invalid && (houseForm.dirty || houseForm.touched)
+              }"
+            />
+            <input
+              nbInput
+              type="number"
+              min="1"
+              placeholder="Укажите корпус"
+              class="form-control"
+              formControlName="korpusCtrl"
+            />
+            <input
+              nbInput
+              placeholder="Литера"
+              class="form-control"
+              formControlName="literCtrl"
+            />
+            <nb-autocomplete
+              #selectHouse
+              (selectedChange)="onSelectionChangeHouse($event)"
+            >
+              <nb-option
+                *ngFor="let option of filteredOptionsHouse$ | async"
+                [value]="option"
+              >
+                {{ option }}
+              </nb-option>
+            </nb-autocomplete>
+          </div>
+          <div class="button-group">
+            <button nbButton nbStepperNext>Дальше</button>
+            <button nbButton nbStepperPrevious>Назад</button>
+          </div>
+        </form>
+      </nb-step>
+      <nb-step [stepControl]="houseForm2" label="Парадная">
+        <form
+          [formGroup]="houseForm"
+          (ngSubmit)="onhouseSubmit()"
+          class="step-container"
+        >
+          <p class="lorem">Для более точного подбора сведений, укажите парадную.</p>
+          <div class="input-group">
+            <input
+              nbInput
+              type="text"
+              style="max-width: 100%"
+              placeholder="Укажите парадную"
+              class="form-control"
+              formControlName="houseCtrl"
+              [ngClass]="{
+                'form-control-danger':
+                  houseForm.invalid && (houseForm.dirty || houseForm.touched)
+              }"
+            />
+          </div>
+          <div class="button-group">
+            <button nbButton nbStepperPrevious>Назад</button>
+            <button nbButton nbStepperNext>Отправить</button>
+          </div>
+        </form>
+      </nb-step>
+      <nb-step [stepControl]="houseForm" [hidden]="true" label="house step">
+        <div class="step-container">
+          <h3>Успешно!</h3>
+          <button nbButton (click)="stepper.reset()">Войти</button>
+        </div>
+      </nb-step>
+    </nb-stepper>
+  </nb-card-body>
+</nb-card>

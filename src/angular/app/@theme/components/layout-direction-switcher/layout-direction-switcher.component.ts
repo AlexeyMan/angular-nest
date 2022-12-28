@@ -9,8 +9,8 @@ import { Subject } from 'rxjs';
     <ngx-switcher
       [firstValue]="directions.RTL"
       [secondValue]="directions.LTR"
-      [firstValueLabel]="'RTL'"
-      [secondValueLabel]="'LTR'"
+      [firstValueLabel]="'С право'"
+      [secondValueLabel]="'С лево'"
       [value]="currentDirection"
       (valueChange)="toggleDirection($event)"
       [vertical]="vertical">

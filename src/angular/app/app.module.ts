@@ -11,18 +11,27 @@ import { CoreModule } from './@core/core.module';
 import { ThemeModule } from './@theme/theme.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { EntryComponent } from './entry/entry.component';
+import { StepperComponent } from './entry/stepper/stepper.component';
 import {
+  NbButtonModule,
+  NbCardModule,
   NbChatModule,
   NbDatepickerModule,
   NbDialogModule,
+  NbInputModule,
   NbMenuModule,
   NbSidebarModule,
+  NbStepperModule,
   NbToastrModule,
+  NbTooltipModule,
   NbWindowModule,
+  NbAutocompleteModule,
 } from '@nebular/theme';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, EntryComponent, StepperComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -34,6 +43,14 @@ import {
     NbDialogModule.forRoot(),
     NbWindowModule.forRoot(),
     NbToastrModule.forRoot(),
+    NbCardModule,
+    NbStepperModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NbButtonModule,
+    NbTooltipModule,
+    NbInputModule,
+    NbAutocompleteModule,
     NbChatModule.forRoot({
       messageGoogleMapKey: 'AIzaSyA_wNuCzia92MAmdLRzmqitRGvCF7wCZPY',
     }),
