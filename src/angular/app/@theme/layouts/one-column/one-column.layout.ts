@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NbThemeService } from '@nebular/theme';
 
 @Component({
   selector: 'ngx-one-column-layout',
@@ -26,7 +27,12 @@ import { Component } from '@angular/core';
 export class OneColumnLayoutComponent {
   swichMenu = true;
   position = localStorage.getItem("swichMenu");
+  theme = localStorage.getItem('colorTheme');
+  constructor(private themeService: NbThemeService,){}
   ngOnInit(){
+    if (this.theme) {
+      this.themeService.changeTheme(this.theme);
+    }
     if(this.position){
       this.swichMenu = (this.position === 'true');
     }
