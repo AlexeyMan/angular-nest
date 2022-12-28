@@ -2,10 +2,10 @@
   <nb-card-header>Заполните необходимую информацию</nb-card-header>
   <nb-card-body>
     <nb-stepper #stepper>
-      <nb-step [stepControl]="firstForm" label="Город">
+      <nb-step [stepControl]="sityForm" label="Город">
         <form
-          [formGroup]="firstForm"
-          (ngSubmit)="onFirstSubmit()"
+          [formGroup]="sityForm"
+          (ngSubmit)="onsitySubmit()"
           class="step-container"
         >
           <p class="lorem">Выберите город</p>
@@ -17,12 +17,12 @@
               style="max-width: 100%"
               placeholder="Выберите город"
               class="form-control"
-              formControlName="firstCtrl"
+              formControlName="sityCtrl"
               (input)="onChangeSity()"
               [nbAutocomplete]="selectSity"
               [ngClass]="{
                 'form-control-danger':
-                  firstForm.invalid && (firstForm.dirty || firstForm.touched)
+                  sityForm.invalid && (sityForm.dirty || sityForm.touched)
               }"
             />
 
@@ -41,10 +41,10 @@
           <button nbButton nbStepperNext>Дальше</button>
         </form>
       </nb-step>
-      <nb-step [stepControl]="secondForm" label="Улицу">
+      <nb-step [stepControl]="streetForm" label="Улицу">
         <form
-          [formGroup]="secondForm"
-          (ngSubmit)="onSecondSubmit()"
+          [formGroup]="streetForm"
+          (ngSubmit)="onstreetSubmit()"
           class="step-container"
         >
           <p class="lorem">Выберите улицу</p>
@@ -56,12 +56,12 @@
               style="max-width: 100%"
               placeholder="Выберите улицу"
               class="form-control"
-              formControlName="secondCtrl"
+              formControlName="streetCtrl"
               (input)="onChangeStreet()"
               [nbAutocomplete]="selectStreet"
               [ngClass]="{
                 'form-control-danger':
-                  secondForm.invalid && (secondForm.dirty || secondForm.touched)
+                  streetForm.invalid && (streetForm.dirty || streetForm.touched)
               }"
             />
 
@@ -142,7 +142,6 @@
       <nb-step [stepControl]="houseForm2" label="Парадная">
         <form
           [formGroup]="houseForm"
-          (ngSubmit)="onhouseSubmit()"
           class="step-container"
         >
           <p class="lorem">Для более точного подбора сведений, укажите парадную.</p>
@@ -153,25 +152,21 @@
               style="max-width: 100%"
               placeholder="Укажите парадную"
               class="form-control"
-              formControlName="houseCtrl"
-              [ngClass]="{
-                'form-control-danger':
-                  houseForm.invalid && (houseForm.dirty || houseForm.touched)
-              }"
+              formControlName="EntranceCtrl"
             />
           </div>
           <div class="button-group">
             <button nbButton nbStepperPrevious>Назад</button>
-            <button nbButton nbStepperNext>Отправить</button>
+            <button nbButton (click)="onSave()">Отправить</button>
           </div>
         </form>
       </nb-step>
-      <nb-step [stepControl]="houseForm" [hidden]="true" label="house step">
+      <!-- <nb-step [stepControl]="houseForm" [hidden]="true" label="house step">
         <div class="step-container">
           <h3>Успешно!</h3>
           <button nbButton (click)="stepper.reset()">Войти</button>
         </div>
-      </nb-step>
+      </nb-step> -->
     </nb-stepper>
   </nb-card-body>
 </nb-card>

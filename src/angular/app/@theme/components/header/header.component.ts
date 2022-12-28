@@ -75,6 +75,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   changeTheme(themeName: string) {
+    localStorage.setItem("colorTheme", themeName);
     this.themeService.changeTheme(themeName);
   }
 

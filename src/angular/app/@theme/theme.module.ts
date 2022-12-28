@@ -31,6 +31,7 @@ import {
   NumberWithCommasPipe,
 } from './pipes';
 import {
+  MainLayoutComponent,
   OneColumnLayoutComponent,
   ThreeColumnsLayoutComponent,
   TwoColumnsLayoutComponent,
@@ -63,6 +64,7 @@ const COMPONENTS = [
   OneColumnLayoutComponent,
   ThreeColumnsLayoutComponent,
   TwoColumnsLayoutComponent,
+  MainLayoutComponent,
 ];
 const PIPES = [
   CapitalizePipe,

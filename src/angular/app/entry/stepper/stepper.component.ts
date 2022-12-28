@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { map, Observable, of } from 'rxjs';
 
 @Component({
@@ -11,8 +12,8 @@ import { map, Observable, of } from 'rxjs';
 
 export class StepperComponent implements OnInit {
 
-  firstForm: FormGroup;
-  secondForm: FormGroup;
+  sityForm: FormGroup;
+  streetForm: FormGroup;
   houseForm: FormGroup;
   houseForm2: FormGroup;
   
@@ -24,27 +25,35 @@ export class StepperComponent implements OnInit {
   filteredOptionsHouse$: Observable<string[]>;
   optionsEntrance: string[];
   filteredOptionsEntrance$: Observable<string[]>;
-
+  fullAdres = {
+    sity: "",
+    street: "",
+    house: "",
+    korpus: "",
+    liter: "",
+    entrance: "",
+  };
   @ViewChild('autoInputSity') inputSity;
   @ViewChild('autoInputStreet') inputStreet;
   @ViewChild('autoInputHouse') inputHouse;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private router: Router) {
   }
 
   ngOnInit() {
-    this.firstForm = this.fb.group({
-      firstCtrl: ['', Validators.required],
+    this.sityForm = this.fb.group({
+      sityCtrl: ['', Validators.required],
     });
 
-    this.secondForm = this.fb.group({
-      secondCtrl: ['', Validators.required],
+    this.streetForm = this.fb.group({
+      streetCtrl: ['', Validators.required],
     });
 
     this.houseForm = this.fb.group({
       houseCtrl: ['', Validators.required],
       korpusCtrl: [''],
       literCtrl: [''],
+      EntranceCtrl:[''],
     });
 
     this.optionsSity = ['Санкт-Петербург', 'Москва', 'Мурманск'];
@@ -57,12 +66,21 @@ export class StepperComponent implements OnInit {
     this.filteredOptionsEntrance$ = of(this.optionsEntrance);
   }
 
-  onFirstSubmit() {
-    this.firstForm.markAsDirty();
+  onSave() {
+    this.fullAdres.sity = this.sityForm.value.sityCtrl;
+    this.fullAdres.street = this.streetForm.value.streetCtrl;
+    this.fullAdres.house = this.houseForm.value.houseCtrl;
+    this.fullAdres.korpus = this.houseForm.value.korpusCtrl;
+    this.fullAdres.liter = this.houseForm.value.literCtrl;
+    this.fullAdres.entrance = this.houseForm.value.EntranceCtrl;
+    localStorage.setItem('fullAdres', JSON.stringify(this.fullAdres));
+    this.router.navigate(['pages']);
   }
-
-  onSecondSubmit() {
-    this.secondForm.markAsDirty();
+  onsitySubmit() {
+    this.sityForm.markAsDirty();
+  }
+  onstreetSubmit() {
+    this.streetForm.markAsDirty();
   }
 
   onhouseSubmit() {
