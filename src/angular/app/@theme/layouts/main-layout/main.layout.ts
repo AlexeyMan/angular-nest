@@ -10,7 +10,7 @@ import { NbSidebarService, NbThemeService } from '@nebular/theme';
         <ngx-header></ngx-header>
       </nb-layout-header> -->
 
-      <nb-sidebar state="compacted" right class="menu-sidebar" tag="menu-sidebar">
+      <nb-sidebar state="compacted" [right]="swichMenu" class="menu-sidebar" tag="menu-sidebar">
         <div class="row" style="justify-content: flex-start">
           <a (click)="toggleSidebar()" style="width: 100%;" href="#" class="sidebar-toggle">
             <nb-icon style="fontSize: 40px; margin-bottom: 34px; margin-left: 1px" icon="menu-2-outline"></nb-icon>
@@ -30,14 +30,19 @@ import { NbSidebarService, NbThemeService } from '@nebular/theme';
   `
 })
 export class MainLayoutComponent implements OnInit {
+  swichMenu = true;
   constructor(
     private themeService: NbThemeService,
     private sidebarService: NbSidebarService,
   ) {}
   ngOnInit(): void {
     const theme = localStorage.getItem('colorTheme');
+    const sw = localStorage.getItem('swichMenu');
     if (theme) {
       this.themeService.changeTheme(theme);
+    }
+    if (sw){
+      this.swichMenu = (sw === 'true');
     }
   }
   toggleSidebar(): boolean {

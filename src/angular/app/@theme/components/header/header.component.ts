@@ -38,6 +38,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   currentTheme = 'default';
 
   userMenu = [ { title: 'Войти' }, { title: 'Заявка' } ];
+  checked: any;
 
   constructor(private sidebarService: NbSidebarService,
               private menuService: NbMenuService,
