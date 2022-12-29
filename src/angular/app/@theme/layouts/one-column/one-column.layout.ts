@@ -5,9 +5,13 @@ import { NbThemeService } from '@nebular/theme';
   selector: 'ngx-one-column-layout',
   styleUrls: ['./one-column.layout.scss'],
   template: `
+  
     <nb-layout>
       <nb-layout-header fixed>
-        <ngx-header><nb-toggle labelPosition="start" (checkedChange)="checkSwich(swichMenu)" [(checked)]="swichMenu">Положение меню</nb-toggle></ngx-header>
+        <ngx-header>
+          <nb-toggle labelPosition="start" (checkedChange)="checkSwich(swichMenu)" [(checked)]="swichMenu">Положение меню</nb-toggle>
+          <button nbButton style="margin-left: 30px" id="goFS" (click)="toggleFullScreen()">Полноэкранный режим</button>
+        </ngx-header>
       </nb-layout-header>
 
       <nb-sidebar class="menu-sidebar" tag="menu-sidebar" state="compacted" [right]="swichMenu">
@@ -31,7 +35,10 @@ export class OneColumnLayoutComponent {
   constructor(private themeService: NbThemeService,){}
   ngOnInit(){
     if (this.theme) {
+      // document.documentElement.requestFullscreen();
+      // document.documentElement.requestFullScreen();
       this.themeService.changeTheme(this.theme);
+      let fullscreenElement = document.fullscreenElement;
     }
     if(this.position){
       this.swichMenu = (this.position === 'true');
@@ -40,4 +47,19 @@ export class OneColumnLayoutComponent {
   checkSwich(el){
     localStorage.setItem("swichMenu", (!el).toString());
   }
+  // Переключение в/из полноэкранный режим
+  toggleFullScreen() {
+	  const doc = window.document;
+	  const docEl = doc.documentElement;
+
+	  let requestFullScreen = docEl.requestFullscreen;
+	  let cancelFullScreen = doc.exitFullscreen;
+
+	  if(!doc.fullscreenElement) {
+		requestFullScreen.call(docEl);
+	  }
+	  else {
+		cancelFullScreen.call(doc);
+	  }
+	}
 }
