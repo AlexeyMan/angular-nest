@@ -55,14 +55,6 @@ const ELEMENT_DATA: TariffsGKH[] = [
   { nameService: 'Neon', costTotalArea: 20.1797, costInHostels: 6.941 },
 ];
 
-/**
- * @title Basic use of `<table mat-table>`
- */
-// @Component({
-//   selector: 'table-basic-example',
-//   styleUrls: ['table-basic-example.css'],
-//   templateUrl: 'table-basic-example.html',
-// })
 @Component({
   selector: 'nb-tariff',
   templateUrl: './tariff.component.html',

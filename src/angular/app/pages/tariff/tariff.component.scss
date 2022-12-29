@@ -1,6 +1,10 @@
+@import '../../@theme/styles/themes.scss';
+
+@include nb-install-component() {
 table {
     width: 100%;
-    th, td { padding: 0 0.5em; }
+    background: nb-theme(card-body-color);
+    th, td { padding: 0 0.5em; color: nb-theme(card-text-color);}
   }
 
   .mat-paginator-range-label {
@@ -20,7 +24,7 @@ table {
   }
   /* Font color */
   input.mat-input-element {
-    color: rgb(0, 0, 0);
+    color: nb-theme(card-text-color);
   }
   .positionBtn {
     justify-content: flex-end;
@@ -37,3 +41,4 @@ table {
   ::ng-deep .mat-form-field-wrapper {
     padding-bottom: 10px;
   }
+}

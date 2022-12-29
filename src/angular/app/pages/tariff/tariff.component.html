@@ -1,14 +1,7 @@
 <div class="mat-elevation-z8">
   <nb-card class="header-container ">
     <nb-card-header>
-      <mat-form-field style="width: 40%">
-        <mat-label>Фильтр</mat-label>
-        <input matInput (keyup)="applyFilter($event)" placeholder="" #input />
-      </mat-form-field>
-      <!-- <mat-form-field style="width: 20%; float: right;">
-          <mat-label>Go to Page</mat-label>
-          <input matInput type="number" placeholder="Enter page number" [(ngModel)]="pageNumber" (ngModelChange)="goToPage()">
-        </mat-form-field> -->
+        <input nbInput (keyup)="applyFilter($event)" placeholder="Фильтр" #input />
     </nb-card-header>
     <form [formGroup]="VOForm" autocomplete="off">
       <ng-container formArrayName="VORows">
@@ -233,8 +226,8 @@
     <nb-card style="min-width: 350px;">
       <nb-card-header>{{ data.title }}</nb-card-header>
       <nb-card-body>{{ data.data }}</nb-card-body>
-      <nb-card-footer style="position: relative;">
-        <button nbButton (click)="ref.close(false)">Закрыть</button>
+      <nb-card-footer style="display: flex; justify-content: space-between;">
+        <button nbButton (click)="ref.close(false)">Нет</button>
         <button
           class="saveBtn"
           nbButton
