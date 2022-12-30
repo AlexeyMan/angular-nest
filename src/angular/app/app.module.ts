@@ -29,9 +29,11 @@ import {
   NbAutocompleteModule,
 } from '@nebular/theme';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommercialComponent } from './commercial/commercial.component';
+import { SwiperModule } from 'swiper/angular';
 
 @NgModule({
-  declarations: [AppComponent, EntryComponent, StepperComponent],
+  declarations: [AppComponent, EntryComponent, StepperComponent, CommercialComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -51,6 +53,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     NbTooltipModule,
     NbInputModule,
     NbAutocompleteModule,
+    SwiperModule,
     NbChatModule.forRoot({
       messageGoogleMapKey: 'AIzaSyA_wNuCzia92MAmdLRzmqitRGvCF7wCZPY',
     }),

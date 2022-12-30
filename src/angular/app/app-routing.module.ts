@@ -9,6 +9,7 @@ import {
   NbResetPasswordComponent,
 } from '@nebular/auth';
 import { EntryComponent } from './entry/entry.component';
+import { CommercialComponent } from './commercial/commercial.component';
 // import {PagesComponent } from './pages/pages.component';
 // import {EntryModule } from './entry/entry.module';
 export const routes: Routes = [
@@ -20,6 +21,10 @@ export const routes: Routes = [
   {
     path: 'entry',
     component: EntryComponent,
+  },
+  {
+    path: 'commercial',
+    component: CommercialComponent,
   },
   {
     path: 'auth',
@@ -51,8 +56,8 @@ export const routes: Routes = [
       },
     ],
   },
-  { path: '', redirectTo: 'entry', pathMatch: 'full' },
-  { path: '**', redirectTo: 'entry' },
+  { path: '', redirectTo: 'commercial', pathMatch: 'full' },
+  { path: '**', redirectTo: 'commercial' },
 ];
 
 const config: ExtraOptions = {

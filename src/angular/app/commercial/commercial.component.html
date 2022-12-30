@@ -1,0 +1,25 @@
+<swiper
+      [spaceBetween]="30"
+      [centeredSlides]="true"
+      [grabCursor]="true"
+      [effect]="'creative'"
+      [autoplay]="{
+      delay: 7500,
+      disableOnInteraction: false
+    }"
+      [creativeEffect]="{
+        prev: {
+          shadow: true,
+          translate: [0, 0, -400]
+        },
+        next: {
+          translate: ['100%', 0, 0]
+        }
+      }"
+      class="mySwiper"
+    >
+    <ng-template swiperSlide><img src="../../assets/img/1.jpg" alt="Здесь могла быть ваша реклама)"/></ng-template
+    ><ng-template swiperSlide><img src="../../assets/img/2.jpg" alt="Здесь могла быть ваша реклама)"></ng-template
+    ><ng-template swiperSlide><img src="../../assets/img/3.jpg"></ng-template
+    ><ng-template swiperSlide><img src="../../assets/img/4.jpg"></ng-template>
+  </swiper>

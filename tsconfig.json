@@ -8,7 +8,10 @@
     "sourceMap": true,
     "outDir": "./dist",
     "baseUrl": "./",
-    "incremental": true
+    "paths": {
+      "swiper_angular": ["./node_modules/swiper/angular"]
+    },
+    "incremental": true,
   },
   "exclude": ["node_modules", "dist"]
 }
