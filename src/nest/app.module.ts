@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AddressModule } from './address/address.module';
+import { InfoCardModule } from './info-cards/info-cards.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { AddressModule } from './address/address.module';
       autoLoadEntities: true,
     }),
     AddressModule,
+    InfoCardModule,
   ],
   controllers: [],
   providers: [],
