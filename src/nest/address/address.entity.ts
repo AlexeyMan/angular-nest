@@ -3,7 +3,7 @@ import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 
 @Entity('Address')
-export class EntryEntity  {
+export class AddressEntity  {
   @ApiProperty({ example: '1', description: 'Уникальный идентификатор' })
   @PrimaryGeneratedColumn()
   id: number;

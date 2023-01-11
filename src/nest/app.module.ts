@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { EntryModule } from './entry/entry.module';
+import { AddressModule } from './address/address.module';
 
 @Module({
   imports: [
@@ -18,7 +18,7 @@ import { EntryModule } from './entry/entry.module';
       synchronize: false,
       autoLoadEntities: true,
     }),
-    EntryModule,
+    AddressModule,
   ],
   controllers: [],
   providers: [],
