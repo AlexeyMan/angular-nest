@@ -8,8 +8,8 @@ import {
   NbRequestPasswordComponent,
   NbResetPasswordComponent,
 } from '@nebular/auth';
-import { EntryComponent } from './entry/entry.component';
-import { CommercialComponent } from './commercial/commercial.component';
+import { EntryComponent } from './pages/entry/entry.component';
+import { CommercialComponent } from './pages/commercial/commercial.component';
 // import {PagesComponent } from './pages/pages.component';
 // import {EntryModule } from './entry/entry.module';
 export const routes: Routes = [
@@ -56,7 +56,7 @@ export const routes: Routes = [
       },
     ],
   },
-  { path: '', redirectTo: 'commercial', pathMatch: 'full' },
+  { path: '', redirectTo: 'entry', pathMatch: 'full' },
   { path: '**', redirectTo: 'commercial' },
 ];
 

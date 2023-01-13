@@ -2,7 +2,7 @@
   <nb-card-header>Заполните необходимую информацию</nb-card-header>
   <nb-card-body>
     <nb-stepper #stepper>
-      <nb-step [stepControl]="sityForm" label="Город">
+      <!-- <nb-step [stepControl]="sityForm" label="Город">
         <form
           [formGroup]="sityForm"
           (ngSubmit)="onsitySubmit()"
@@ -32,6 +32,45 @@
             >
               <nb-option
                 *ngFor="let option of filteredOptionsSity$ | async"
+                [value]="option"
+              >
+                {{ option }}
+              </nb-option>
+            </nb-autocomplete>
+          </div>
+          <button nbButton nbStepperNext>Дальше</button>
+        </form>
+      </nb-step> -->
+      <nb-step [stepControl]="districtForm" label="Район">
+        <form
+          [formGroup]="districtForm"
+          (ngSubmit)="ondistrictSubmit()"
+          class="step-container"
+        >
+          <p class="lorem">Выберите район</p>
+          <div class="input-group">
+            <input
+              #autoInputDistrict
+              nbInput
+              type="text"
+              style="max-width: 100%"
+              placeholder="Выберите район"
+              class="form-control"
+              formControlName="districtCtrl"
+              (input)="onChangeDistrict()"
+              [nbAutocomplete]="selectDistrict"
+              [ngClass]="{
+                'form-control-danger':
+                districtForm.invalid && (districtForm.dirty || districtForm.touched)
+              }"
+            />
+
+            <nb-autocomplete
+              #selectDistrict
+              (selectedChange)="onSelectionChangeDistrict($event)"
+            >
+              <nb-option
+                *ngFor="let option of filteredOptionsDistricts$ | async"
                 [value]="option"
               >
                 {{ option }}

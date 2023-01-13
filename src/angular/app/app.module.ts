@@ -11,8 +11,6 @@ import { CoreModule } from './@core/core.module';
 import { ThemeModule } from './@theme/theme.module';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { EntryComponent } from './entry/entry.component';
-import { StepperComponent } from './entry/stepper/stepper.component';
 import {
   NbButtonModule,
   NbCardModule,
@@ -29,11 +27,11 @@ import {
   NbAutocompleteModule,
 } from '@nebular/theme';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CommercialComponent } from './commercial/commercial.component';
+import { CommercialComponent } from './pages/commercial/commercial.component';
 import { SwiperModule } from 'swiper/angular';
 
 @NgModule({
-  declarations: [AppComponent, EntryComponent, StepperComponent, CommercialComponent],
+  declarations: [AppComponent, CommercialComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
