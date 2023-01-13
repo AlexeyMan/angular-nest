@@ -2,6 +2,8 @@ import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { map, Observable, of } from 'rxjs';
+import { District } from 'src/angular/app/_models/common';
+import { CommonService } from "../../../_services/common.service";
 
 @Component({
   selector: 'nb-stepper-validation',
@@ -12,13 +14,16 @@ import { map, Observable, of } from 'rxjs';
 
 export class StepperComponent implements OnInit {
 
-  sityForm: FormGroup;
+  // sityForm: FormGroup;
+  districtForm: FormGroup;
   streetForm: FormGroup;
   houseForm: FormGroup;
   houseForm2: FormGroup;
   
-  optionsSity: string[];
-  filteredOptionsSity$: Observable<string[]>;
+  // optionsSity: string[];
+  // filteredOptionsSity$: Observable<string[]>;
+  optionsDistricts: Observable<District[]>;
+  filteredOptionsDistricts$: Observable<any>;
   optionsStreet: string[];
   filteredOptionsStreet$: Observable<string[]>;
   optionsHouse: string[];
@@ -27,24 +32,31 @@ export class StepperComponent implements OnInit {
   filteredOptionsEntrance$: Observable<string[]>;
   fullAdres = {
     sity: "",
+    district: "",
     street: "",
     house: "",
     korpus: "",
     liter: "",
     entrance: "",
   };
-  @ViewChild('autoInputSity') inputSity;
+  // @ViewChild('autoInputSity') inputSity;
+  @ViewChild('autoInputDistrict') inputDistrict;
   @ViewChild('autoInputStreet') inputStreet;
   @ViewChild('autoInputHouse') inputHouse;
 
-  constructor(private fb: FormBuilder, private router: Router) {
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private common: CommonService,) {
   }
 
   ngOnInit() {
-    this.sityForm = this.fb.group({
-      sityCtrl: ['', Validators.required],
+    // this.sityForm = this.fb.group({
+    //   sityCtrl: ['', Validators.required],
+    // });
+    this.districtForm = this.fb.group({
+      districtCtrl: ['', Validators.required],
     });
-
     this.streetForm = this.fb.group({
       streetCtrl: ['', Validators.required],
     });
@@ -55,9 +67,11 @@ export class StepperComponent implements OnInit {
       literCtrl: [''],
       EntranceCtrl:[''],
     });
-
-    this.optionsSity = ['Санкт-Петербург', 'Москва', 'Мурманск'];
-    this.filteredOptionsSity$ = of(this.optionsSity);
+    // this.common.getStreetsByDistrict([]);
+    this.optionsDistricts =  this.common.getDistricts();
+    this.filteredOptionsDistricts$ = of(this.optionsDistricts);
+    // this.optionsSity = ['Санкт-Петербург', 'Москва', 'Мурманск'];
+    // this.filteredOptionsSity$ = of(this.optionsSity);
     this.optionsStreet = ['Афонская', 'Вербная', 'Щербакова'];
     this.filteredOptionsStreet$ = of(this.optionsStreet);
     this.optionsHouse = ['1', '2', '3'];
@@ -67,7 +81,8 @@ export class StepperComponent implements OnInit {
   }
 
   onSave() {
-    this.fullAdres.sity = this.sityForm.value.sityCtrl;
+    // this.fullAdres.sity = this.sityForm.value.sityCtrl;
+    this.fullAdres.district = this.districtForm.value.sityCtrl;
     this.fullAdres.street = this.streetForm.value.streetCtrl;
     this.fullAdres.house = this.houseForm.value.houseCtrl;
     this.fullAdres.korpus = this.houseForm.value.korpusCtrl;
@@ -76,8 +91,11 @@ export class StepperComponent implements OnInit {
     localStorage.setItem('fullAdres', JSON.stringify(this.fullAdres));
     this.router.navigate(['pages']);
   }
-  onsitySubmit() {
-    this.sityForm.markAsDirty();
+  // onsitySubmit() {
+  //   this.sityForm.markAsDirty();
+  // }
+  ondistrictSubmit() {
+    this.districtForm.markAsDirty();
   }
   onstreetSubmit() {
     this.streetForm.markAsDirty();
@@ -97,14 +115,18 @@ export class StepperComponent implements OnInit {
     );
   }
 
-  onChangeSity() {
-    this.filteredOptionsSity$ = this.getFilteredOptions(this.inputSity.nativeElement.value, this.optionsSity);
+  // onChangeSity() {
+  //   this.filteredOptionsSity$ = this.getFilteredOptions(this.inputSity.nativeElement.value, this.optionsSity);
+  // }
+  // onSelectionChangeSity($event) {
+  //   this.filteredOptionsSity$ = this.getFilteredOptions($event, this.optionsSity);
+  // }
+  onChangeDistrict() {
+    this.filteredOptionsDistricts$ = this.getFilteredOptions(this.inputDistrict.nativeElement.value, this.optionsDistricts);
   }
-
-  onSelectionChangeSity($event) {
-    this.filteredOptionsSity$ = this.getFilteredOptions($event, this.optionsSity);
+  onSelectionChangeDistrict($event) {
+    this.filteredOptionsDistricts$ = this.getFilteredOptions($event, this.optionsDistricts);
   }
-
   onChangeStreet() {
     this.filteredOptionsStreet$ = this.getFilteredOptions(this.inputStreet.nativeElement.value, this.optionsStreet);
   }
